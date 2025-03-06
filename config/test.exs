@@ -1,5 +1,8 @@
 import Config
 
+# * To prevent Oban from running jobs and plugins during test runs, enable :testing mode in test.exs
+config :checkoban, Oban, testing: :manual
+
 # Configure your database
 #
 # The MIX_TEST_PARTITION environment variable can be used

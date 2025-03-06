@@ -7,6 +7,12 @@
 # General application configuration
 import Config
 
+config :checkoban, Oban,
+  engine: Oban.Engines.Basic,
+  notifier: Oban.Notifiers.Postgres,
+  queues: [default: 10],
+  repo: Checkoban.Repo
+
 config :checkoban,
   ecto_repos: [Checkoban.Repo],
   generators: [binary_id: true, timestamp_type: :utc_datetime]
@@ -41,9 +47,9 @@ config :esbuild,
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
-  # configure the app to use PostgrexTypes
+# configure the app to use PostgrexTypes
 
-config :checkoban, Checkoban.Repo, types: Checkoban.PostgrexTypes
+# config :checkoban, Checkoban.Repo, types: Checkoban.PostgrexTypes
 
 # Configure tailwind (the version is required)
 config :tailwind,

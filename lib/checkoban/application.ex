@@ -11,6 +11,8 @@ defmodule Checkoban.Application do
       CheckobanWeb.Telemetry,
       Checkoban.Repo,
       {DNSCluster, query: Application.get_env(:checkoban, :dns_cluster_query) || :ignore},
+      # sets up Oban instances to run as children in the supervision trees
+      {Oban, Application.fetch_env!(:checkoban, Oban)},
       {Phoenix.PubSub, name: Checkoban.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Checkoban.Finch},
